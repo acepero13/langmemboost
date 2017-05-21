@@ -1,0 +1,13 @@
+To Test:
+    Deck:
+        ☐ Get all cards (With a defualt max)
+        ☐ Get Next card from deck(Promise)
+        ☐ Get previous card
+        ☐ Get Recommended card (Strategy different algorithms)
+
+    Card:
+        ☐ Get Properties
+        ☐ Talk
+
+    IndexDB: 
+        ☐ Integrate with DB
