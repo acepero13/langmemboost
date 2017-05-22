@@ -7,11 +7,12 @@ describe('Test Squential retriever', function(){
     it('should return error on empty array', function(){
          let cardProvider = new FakeCardProvider([]);
          let sequential = new Sequential(cardProvider);
-         sequential.getNextCard()
-            .then()
-            .catch((error) =>{expect(error).to.be.instanceof(Error)
+         return sequential.getNextCard()
+            .then((card) =>{console.log("b")})
+            .catch((error) =>{console.log(error);expect(error).to.be.instanceof(Error)
                 .and.have.property('message', 'Deck has no more cards')});
     });
+
 
 
     it('should return first card with two items array', function(){
@@ -20,6 +21,17 @@ describe('Test Squential retriever', function(){
          return sequential.getNextCard()
             .then(card => { expect(card).to.have.property("front","Front First")})
             .catch(error => {console.log(error);expect(true).to.be.false});
+    });
+
+    it('should return second card with two items array', function(){
+         let cardProvider = createFakeProvider();
+         let sequential = new Sequential(cardProvider);
+         return sequential.getNextCard()
+            .then(card => {
+                return sequential.getNextCard()
+                .then(card2 => { 
+                    expect(card2).to.have.property("front","Front Second")}
+                )})
     });
 });
 

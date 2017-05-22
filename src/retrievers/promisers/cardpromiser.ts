@@ -1,3 +1,4 @@
+
 import { Sequential } from '../sequential';
 import { CardProvider } from "../../providers/cardprovider";
 import { SequentialIterator } from "../iterators/sequential";
@@ -17,16 +18,11 @@ export class CardPromiser {
         this.cardProvider = cardProvider;
     }
 
-    promiseCard() :void{
-        try{
-            this.tryToResolveCard();
-        }catch(err){
-            console.log(err);
-            this.rejecter(new Error("Deck has no more cards"));
-        }     
+    public getIterator():Iterator{
+        return this.sequentialIt;
     }
 
-    private tryToResolveCard():void{
+    private promiseCard():void{
         if(this.isIteratorInitialized()){
             this.initIteratorAndResolveCard();
         }else{
@@ -35,19 +31,23 @@ export class CardPromiser {
     }
 
      private isIteratorInitialized():boolean{
-        return this.context.getIterator() == null;
+        return this.context.sequentialIt == null;
     }
 
     private initIteratorAndResolveCard(){
         var self = this;
         this.cardProvider.getCards().then((cards) =>{
-            self.sequentialIt = new SequentialIterator(cards);
+            this.context.sequentialIt = new SequentialIterator(cards);
             this.resolveCard();
         });
     }
 
     private resolveCard(){
-            let card = this.sequentialIt.next();
+        try{
+            let card = this.context.sequentialIt.next();
             this.resolver(card);
+        }catch(err){
+            this.rejecter(new Error("Deck has no more cards"))
+        }
     }
 }
