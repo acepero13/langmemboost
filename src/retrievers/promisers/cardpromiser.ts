@@ -22,7 +22,7 @@ export class CardPromiser {
         return this.sequentialIt;
     }
 
-    private promiseCard():void{
+    public promiseCard():void{
         if(this.isIteratorInitialized()){
             this.initIteratorAndResolveCard();
         }else{
