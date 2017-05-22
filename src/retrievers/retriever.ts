@@ -1,4 +1,5 @@
+import {Card} from '../card'
 export interface Retriever{
-    getNextCard();
-    getPreviousCard();
+    getNextCard(): Promise<Card>;
+    getPreviousCard(): Promise<Card>;
 }

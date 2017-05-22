@@ -4,7 +4,8 @@
   "description": "Repetition learning app",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "build": "gulp build-app",
+    "test": "mocha out/tests/"
   },
   "keywords": [
     "memory",
@@ -27,6 +28,7 @@
     "gulp-typescript": "^3.1.6",
     "gulp-uglify": "^2.1.2",
     "gulp-watch": "^4.3.11",
+    "remap-istanbul": "^0.9.5",
     "run-sequence": "^1.2.2",
     "tslint": "^5.2.0",
     "typescript": "^2.3.2",

@@ -27,7 +27,11 @@ gulp.task("build-app", function(){
     console.log("building app");
     return gulp.src(["src/**/**.ts", "typings/main.d.ts/", "src/interfaces/interfaces.d.ts"])
     .pipe(tsc(tscProject))
-    .on('error', swallowError)
+    .on('error', function (err) {
+            console.log(err.toString());
+
+            this.emit('end');
+        })
     .js.pipe(gulp.dest("out/src/"))
 });
 
@@ -69,15 +73,23 @@ var tsTestProject = tsc.createProject("tsconfig.json");
 gulp.task("build-tests", function(){
     return gulp.src(["tests/**/*.ts", "typings/main.d.ts", "src/interfaces/interfaces.d.ts"])
     .pipe(tsc(tsTestProject))
-    .on('error', swallowError)
+    .on('error', function (err) {
+            console.log(err.toString());
+
+            this.emit('end');
+        })
     .js.pipe(gulp.dest("out/tests/"));
 });
     
 gulp.task("istanbul:hook", function(){
     return gulp.src("out/src/**/*.js")
     //Covering files
-    .pipe(istanbul())
-    .on('error', swallowError)
+    .pipe(istanbul({includeUntested:true}))
+    .on('error', function (err) {
+            console.log(err.toString());
+
+            this.emit('end');
+        })
         // Force `require` to return covered files
     .pipe(istanbul.hookRequire());
 });
@@ -86,17 +98,14 @@ gulp.task("test", ["istanbul:hook", "build-tests"], function() {
     console.log("Running tests..");
     return gulp.src('out/tests/**/*.test.js')
         .pipe(mocha({ui: 'bdd'}))
-        .on('error', swallowError)
+        .on('error', function (err) {
+            console.log(err.toString());
+
+            this.emit('end');
+        })
         .pipe(istanbul.writeReports());
 });
 
 
 gulp.task('default', ['watch-source', 'watch-tests']);
 
-function swallowError (error) {
-
-  // If you want details of the error in the console
-  console.log("Gulpy error" + error.toString())
-
-  this.emit('end')
-}
