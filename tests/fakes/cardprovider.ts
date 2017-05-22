@@ -8,8 +8,9 @@ export class FakeCardProvider extends CardProvider{
     }
 
    getCards(): Promise<Card[]>{
+       var self = this;
         return new Promise<Card[]>((resolve, reject) =>{
-            resolve(this.cards);
+            resolve(self.cards);
         });
     }
 }

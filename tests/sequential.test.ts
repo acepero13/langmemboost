@@ -18,8 +18,8 @@ describe('Test Squential retriever', function(){
          let cardProvider = createFakeProvider();
          let sequential = new Sequential(cardProvider);
          return sequential.getNextCard()
-            .then(card => {expect(card.front).to.be("Front First")})
-            .catch(error => {expect(true).to.be.false});
+            .then(card => { expect(card).to.have.property("front","Front First")})
+            .catch(error => {console.log(error);expect(true).to.be.false});
     });
 });
 

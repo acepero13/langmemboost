@@ -9,11 +9,14 @@ export class SequentialIterator implements Iterator{
         this.index = 0;
     }
 
-    public next(): Promise<Card> {
-        throw new Error('Not implemented yet.');
+    public next(): Card {
+        if(this.hasNext()){
+            return this.items[this.index++];
+        }
+        throw new Error('Item has no next');
     }
 
-    public previous(): Promise<Card> {
+    public previous(): Card {
         throw new Error('Not implemented yet.');
     }
 

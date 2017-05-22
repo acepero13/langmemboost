@@ -1,16 +1,28 @@
+import { SequentialIterator } from './iterators/sequential';
+import { Iterator } from './iterator';
 import {Retriever} from './retriever';
 import {Card} from '../card'
 import {CardProvider} from '../providers/cardprovider'
-export class Sequential implements Retriever{
+import { CardPromiser } from "./promisers/cardpromiser";
+export class Sequential implements Retriever {
     private cardProvider: CardProvider;
+    private sequentialIt: Iterator; 
+    private cardPromiser: CardPromiser;
 
     public constructor(cardProvider: CardProvider){
-       this.cardProvider = cardProvider;     
+       this.cardProvider = cardProvider;
+    }
+
+    public getIterator():Iterator{
+        return this.sequentialIt;
     }
 
     public getNextCard(): Promise<Card> {
+        var self = this;
         return new Promise<Card>((resolve, reject) => {
-              reject(new Error("Deck has no more cards"));  
+            self.cardPromiser = new CardPromiser(self, self.cardProvider, resolve, reject);
+            self.cardPromiser.promiseCard();
+             
         }); 
     }
 
