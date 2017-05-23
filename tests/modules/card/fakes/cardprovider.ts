@@ -1,5 +1,5 @@
-import {CardProvider} from '../../src/providers/cardprovider';
-import {Card} from '../../src/card'
+import {CardProvider} from '../../../../src/modules/card/providers/cardprovider';
+import {Card} from '../../../../src/modules/card/card'
 export class FakeCardProvider extends CardProvider{
     private cards: Array<Card>;
     public constructor(cards: Array<Card>){

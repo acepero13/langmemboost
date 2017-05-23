@@ -5,13 +5,11 @@ import { SequentialIterator } from "../iterators/sequential";
 import { Iterator } from "../iterator";
 
 
-
 export class CardPromiser {
     private context: Sequential;
     private resolver;
     private rejecter;
     private cardProvider: CardProvider;
-    private sequentialIt: Iterator; 
     private getCardCallback;
     public constructor(context: Sequential
                 , cardProvider: CardProvider
@@ -37,7 +35,6 @@ export class CardPromiser {
     }
 
     private initIteratorAndResolveCard(){
-        var self = this;
         this.cardProvider.getCards().then((cards) =>{
             this.context.sequentialIt = new SequentialIterator(cards);
             this.resolveCard();

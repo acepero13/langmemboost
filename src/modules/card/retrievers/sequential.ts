@@ -16,7 +16,7 @@ export class Sequential implements Retriever {
     public getNextCard(): Promise<Card> {
         var self = this;
         return new Promise<Card>((resolve, reject) => {
-            let cardPromiser = new CardPromiser(self, self.cardProvider, resolve, reject, getNextCardromIt);
+            let cardPromiser = new CardPromiser(self, self.cardProvider, resolve, reject, getNextCardFromIt);
             cardPromiser.promiseCard();
         }); 
     }
@@ -30,7 +30,7 @@ export class Sequential implements Retriever {
     }
 }
 
-function getNextCardromIt(it: Iterator){
+function getNextCardFromIt(it: Iterator){
     return it.next();
 };
 

@@ -19,8 +19,7 @@ export class SequentialIterator implements Iterator {
     public previous(): Card {
         if (this.hasPrevious()) {
             this.positionAtLastReturnedItem();
-            let card = this.items[--this.index];
-            return card;
+            return this.items[--this.index];
         }
         throw new Error('Item has no previous');
     }

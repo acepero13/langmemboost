@@ -12,4 +12,8 @@ export class Deck{
     getNextCard(): Promise<Card>{
         return this.retriever.getNextCard();
     }
+
+    getPreviousCard(): Promise<Card>{
+        return this.retriever.getPreviousCard();
+    }
 }

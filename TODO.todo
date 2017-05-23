@@ -1,12 +1,13 @@
 To Test:
     Deck:
         ☐ Get all cards (With a defualt max)
-        ☐ Get Next card from deck(Promise)
-        ☐ Get previous card
+        ✔ Get Next card from deck(Promise) @done (5/23/2017, 10:49:02 AM)
+        ✔ Get previous card @done (5/23/2017, 10:49:05 AM)
         ☐ Get Recommended card (Strategy different algorithms)
 
     Card:
         ☐ Get Properties
+        ☐ Save card data
         ☐ Talk
 
     IndexDB: 

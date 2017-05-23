@@ -1,5 +1,5 @@
-import {Retriever} from '../../src/retrievers/retriever';
-import {Card} from '../../src/card';
+import {Retriever} from '../../../../src/modules/card/retrievers/retriever';
+import {Card} from '../../../../src/modules/card/card';
 export class ErrorRetriever implements Retriever{
 
 

@@ -1,7 +1,7 @@
-/// <reference path="../typings/globals/mocha/index.d.ts" />
+/// <reference path="../../../typings/globals/mocha/index.d.ts" />
 import { expect } from 'chai';
-import {SequentialIterator} from '../src/retrievers/iterators/sequential';
-import {Card} from '../src/card'
+import {SequentialIterator} from '../../../src/modules/card/retrievers/iterators/sequential';
+import {Card} from '../../../src/modules/card/card'
 
 describe('Test Sequential Interator', function(){
 
