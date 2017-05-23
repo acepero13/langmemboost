@@ -5,6 +5,7 @@ import { SequentialIterator } from "../iterators/sequential";
 import { Iterator } from "../iterator";
 
 
+
 export class CardPromiser {
     private context: Sequential;
     private resolver;

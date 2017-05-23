@@ -5,6 +5,7 @@ export interface Iterator{
     next(): Card;
     previous(): Card;
     hasNext():boolean;
+    hasPrevious():boolean;
     reset():void;
     each(callback: (void)):void;
 }

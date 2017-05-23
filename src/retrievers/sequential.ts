@@ -4,6 +4,9 @@ import {Retriever} from './retriever';
 import {Card} from '../card'
 import {CardProvider} from '../providers/cardprovider'
 import { CardPromiser } from "./promisers/cardpromiser";
+
+
+
 export class Sequential implements Retriever {
     private cardProvider: CardProvider;
     public sequentialIt: Iterator; 

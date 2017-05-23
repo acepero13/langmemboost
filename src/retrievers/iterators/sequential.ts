@@ -1,6 +1,6 @@
 import { Iterator } from '../iterator';
-import {Card} from '../../card'
-export class SequentialIterator implements Iterator{
+import { Card } from '../../card'
+export class SequentialIterator implements Iterator {
     public index: number;
     public items: Array<Card>;
 
@@ -10,14 +10,23 @@ export class SequentialIterator implements Iterator{
     }
 
     public next(): Card {
-        if(this.hasNext()){
+        if (this.hasNext()) {
             return this.items[this.index++];
         }
         throw new Error('Item has no next');
     }
 
     public previous(): Card {
-        throw new Error('Not implemented yet.');
+        if (this.hasPrevious()) {
+            this.positionAtLastReturnedItem();
+            let card = this.items[--this.index];
+            return card;
+        }
+        throw new Error('Item has no previous');
+    }
+
+    private positionAtLastReturnedItem(): void {
+        this.index = this.index - 1;
     }
 
     public hasNext(): boolean {
@@ -25,10 +34,14 @@ export class SequentialIterator implements Iterator{
     }
 
     public reset(): void {
-        throw new Error('Not implemented yet.');
+        this.index = 0;
     }
 
     public each(callback: (void)): void {
         throw new Error('Not implemented yet.');
+    }
+
+    public hasPrevious(): boolean {
+        return this.index > 1;
     }
 }
