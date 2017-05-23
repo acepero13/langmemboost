@@ -12,15 +12,16 @@ export class CardPromiser {
     private rejecter;
     private cardProvider: CardProvider;
     private sequentialIt: Iterator; 
-    public constructor(context: Sequential, cardProvider: CardProvider, resolver?:any, rejecter?:any){
+    private getCardCallback;
+    public constructor(context: Sequential
+                , cardProvider: CardProvider
+                , resolver:any, rejecter:any
+                , getCardFromSequence: (sequence:Iterator)=>any){
         this.context = context;
         this.rejecter = rejecter;
         this.resolver = resolver;
         this.cardProvider = cardProvider;
-    }
-
-    public getIterator():Iterator{
-        return this.sequentialIt;
+        this.getCardCallback = getCardFromSequence;
     }
 
     public promiseCard():void{
@@ -45,7 +46,7 @@ export class CardPromiser {
 
     private resolveCard(){
         try{
-            let card = this.context.sequentialIt.next();
+            let card = this.getCardCallback(this.context.sequentialIt);
             this.resolver(card);
         }catch(err){
             this.rejecter(new Error("Deck has no more cards"))
