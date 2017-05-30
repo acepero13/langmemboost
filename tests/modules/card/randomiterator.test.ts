@@ -40,7 +40,6 @@ describe('Test Random Iterator with filled array and no navigation used', functi
         expect(res).to.be.equals(next); 
     });
 
-
     it('should return navigate on previous and next', function(){
         let it = new RandomWithNavigation([1,2,3,4,5]);
         let first = it.next();

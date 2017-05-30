@@ -1,4 +1,4 @@
-import { Iterator } from './iterators/iterator';
+import {Iterator} from './iterators/iterator';
 import {Retriever} from './retriever';
 import {Card} from '../card'
 import {CardProvider} from '../providers/cardprovider'
@@ -7,7 +7,7 @@ import { CardPromiser } from "./promisers/cardpromiser";
 
 export class Sequential implements Retriever {
     private cardProvider: CardProvider;
-    public sequentialIt: Iterator;
+    public sequentialIt: Iterator<Card>;
 
     public constructor(cardProvider: CardProvider){
        this.cardProvider = cardProvider;
@@ -30,10 +30,9 @@ export class Sequential implements Retriever {
     }
 }
 
-
-function getNextCardFromIt(it: Iterator){
+function getNextCardFromIt(it: Iterator<Card>){
     return it.next();
 }
-function getPreviousCardFromIt(it: Iterator){
+function getPreviousCardFromIt(it: Iterator<Card>){
     return it.previous();
 }

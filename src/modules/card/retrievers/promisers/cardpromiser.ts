@@ -3,7 +3,7 @@ import { Sequential } from '../sequential';
 import { CardProvider } from "../../providers/cardprovider";
 import { SequentialIterator } from "../iterators/sequential";
 import { Iterator } from "../iterators/iterator";
-
+import {Card} from '../../card'
 
 export class CardPromiser {
     private context: Sequential;
@@ -14,7 +14,7 @@ export class CardPromiser {
     public constructor(context: Sequential
                 , cardProvider: CardProvider
                 , resolver:any, rejecter:any
-                , getCardFromSequence: (sequence:Iterator)=>any){
+                , getCardFromSequence: (sequence:Iterator<Card>)=>any){
         this.context = context;
         this.rejecter = rejecter;
         this.resolver = resolver;
