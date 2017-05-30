@@ -1,12 +1,19 @@
+import { CardRetriever } from '../../../src/modules/card/retrievers/cardretriever';
 /// <reference path="../../../typings/globals/mocha/index.d.ts" />
 import {expect} from 'chai';
-import {Sequential} from '../../../src/modules/card/retrievers/sequential';
-import {FakeCardProvider} from './fakes/cardprovider';
 
+import {FakeCardProvider} from './fakes/cardprovider';
+import {SequentialIterator} from "../../../src/modules/card/retrievers/iterators/sequential";
+
+function makeSequentialCardRetriever(cardProvider: FakeCardProvider) {
+    let sequentialIterator = new SequentialIterator([]);
+    let sequential = new CardRetriever(cardProvider, sequentialIterator);
+    return sequential;
+}
 describe('Test Squential retriever getNextCard', function () {
     it('should return error on empty array', function () {
         let cardProvider = new FakeCardProvider([]);
-        let sequential = new Sequential(cardProvider);
+        let sequential = makeSequentialCardRetriever(cardProvider);
         return sequential.getNextCard()
             .then((card) => {
                 console.log("b")
@@ -19,7 +26,7 @@ describe('Test Squential retriever getNextCard', function () {
 
     it('should return first card with two items array', function () {
         let cardProvider = createFakeProvider();
-        let sequential = new Sequential(cardProvider);
+        let sequential = makeSequentialCardRetriever(cardProvider);
         return sequential.getNextCard()
             .then(card => {
                 expect(card).to.have.property("front", "Front First")
@@ -29,9 +36,10 @@ describe('Test Squential retriever getNextCard', function () {
             });
     });
 
+
     it('should return second card with two items array', function () {
         let cardProvider = createFakeProvider();
-        let sequential = new Sequential(cardProvider);
+        let sequential = makeSequentialCardRetriever(cardProvider);
         return sequential.getNextCard()
             .then(card => {
                 return sequential.getNextCard()
@@ -46,7 +54,7 @@ describe('Test Squential retriever getNextCard', function () {
 describe('Test sequential retriever getPreviousCard', function () {
     it('should return error on empty array', function () {
         let cardProvider = new FakeCardProvider([]);
-        let sequential = new Sequential(cardProvider);
+        let sequential = makeSequentialCardRetriever(cardProvider);
         return sequential.getPreviousCard()
             .then((card) => {
                 console.log("b")
@@ -59,7 +67,7 @@ describe('Test sequential retriever getPreviousCard', function () {
 
     it('should return first card with two items array after moving to second', function () {
         let cardProvider = createFakeProvider();
-        let sequential = new Sequential(cardProvider);
+        let sequential = makeSequentialCardRetriever(cardProvider);
         return sequential.getNextCard()
             .then(card => {
                 return sequential.getNextCard()

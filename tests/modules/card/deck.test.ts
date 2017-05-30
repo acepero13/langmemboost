@@ -4,7 +4,9 @@ import {expect} from 'chai';
 import {ErrorRetriever} from './fakes/errorretriever';
 import {FakeCardProvider} from './fakes/cardprovider';
 import {Deck} from "../../../src/modules/card/deck";
-import {Sequential} from "../../../src/modules/card/retrievers/sequential";
+import {CardRetriever} from "../../../src/modules/card/retrievers/cardretriever";
+import {SequentialIterator} from "../../../src/modules/card/retrievers/iterators/sequential";
+
 
 //TODO: Make random
 describe('On Empty Deck getNextCard', function () {
@@ -27,7 +29,7 @@ describe('Sequential card retriever Next Card', function () {
         let firstCard = {front: "Front First", back: "Back First"};
         let secondCard = {front: "Front Second", back: "Back Second"};
         let cardProvider = new FakeCardProvider([firstCard, secondCard]);
-        let sequentialRetriever = new Sequential(cardProvider);
+        let sequentialRetriever = makeSequentialRetriever(cardProvider);
         let currentDeck = new Deck(sequentialRetriever);
         return currentDeck.getNextCard().then(
             card => {
@@ -37,12 +39,17 @@ describe('Sequential card retriever Next Card', function () {
     });
 });
 
+function makeSequentialRetriever(cardProvider: FakeCardProvider) {
+    let sequentialIterator = new SequentialIterator([]);
+    let sequentialRetriever = new CardRetriever(cardProvider, sequentialIterator);
+    return sequentialRetriever;
+}
 describe('Sequential card retriever', function () {
     it('should return first card on getPrevious', function () {
         let firstCard = {front: "Front First", back: "Back First"};
         let secondCard = {front: "Front Second", back: "Back Second"};
         let cardProvider = new FakeCardProvider([firstCard, secondCard]);
-        let sequentialRetriever = new Sequential(cardProvider);
+        let sequentialRetriever = makeSequentialRetriever(cardProvider);
         let currentDeck = new Deck(sequentialRetriever);
         return currentDeck.getNextCard().then((card1) =>
             currentDeck.getNextCard().then(card2 => {

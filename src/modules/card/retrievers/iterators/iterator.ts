@@ -1,4 +1,3 @@
-import {Card} from '../../card'
 export interface Iterator<T>{
     index: number;
     items: Array<T>;
