@@ -1,9 +1,9 @@
-import {Card} from '../card'
-export interface Iterator{
+import {Card} from '../../card'
+export interface Iterator<T>{
     index: number;
-    items: Array<Card>;
-    next(): Card;
-    previous(): Card;
+    items: Array<T>;
+    next(): T;
+    previous(): T;
     hasNext():boolean;
     hasPrevious():boolean;
     reset():void;

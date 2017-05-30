@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build-app",
-    "test": "mocha out/tests/"
+    "test": "mocha out/tests/**/*.js"
   },
   "keywords": [
     "memory",

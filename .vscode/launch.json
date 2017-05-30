@@ -15,9 +15,10 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceRoot}/out/tests"
+                "${workspaceRoot}/out/tests/**/*.js"
             ],
-            "internalConsoleOptions": "openOnSessionStart"
+            "internalConsoleOptions": "openOnSessionStart",
+            "sourceMaps": true
         }
     ]
 }

@@ -1,12 +1,12 @@
 module.exports = function (w) {
 
-return {
-files: [
-'src/*Browser.ts'
-],
+    return {
+        files: [
+            'src/**/*.ts'
+        ],
 
-tests: [
-'test/*BrowserSpec.ts'
-]
-};
+        tests: [
+            'tests/**/*test.ts'
+        ]
+    };
 };

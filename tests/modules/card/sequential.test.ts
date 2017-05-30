@@ -78,4 +78,5 @@ function createFakeProvider(): FakeCardProvider {
     let secondCard = {front: "Front Second", back: "Back Second"};
     let cardProvider = new FakeCardProvider([firstCard, secondCard]);
     return cardProvider;
+
 }

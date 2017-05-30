@@ -1,22 +1,21 @@
-import { Iterator } from '../iterator';
+import { Iterator } from './iterator';
 import { Card } from '../../card'
-export class SequentialIterator implements Iterator {
+export class SequentialIterator<T> implements Iterator<T> {
     public index: number;
-    public items: Array<Card>;
+    public items: Array<T>;
 
-    public constructor(cards: Array<Card>) {
-        this.items = cards;
+    public constructor(items: Array<T>) {
+        this.items = items;
         this.index = 0;
     }
-
-    public next(): Card {
+    public next(): T {
         if (this.hasNext()) {
             return this.items[this.index++];
         }
         throw new Error('Item has no next');
     }
 
-    public previous(): Card {
+    public previous(): T {
         if (this.hasPrevious()) {
             this.positionAtLastReturnedItem();
             return this.items[--this.index];
@@ -29,7 +28,7 @@ export class SequentialIterator implements Iterator {
     }
 
     public hasNext(): boolean {
-        return this.index < this.items.length;
+        return this.items.length > this.index ;
     }
 
     public reset(): void {

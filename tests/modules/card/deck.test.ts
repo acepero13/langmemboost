@@ -1,16 +1,16 @@
 /// <reference path="../../../typings/globals/mocha/index.d.ts" />
 import {expect} from 'chai';
-import deck = require('../../../src/modules/card/deck');
-import seq = require('../../../src/modules/card/retrievers/sequential');
+
 import {ErrorRetriever} from './fakes/errorretriever';
 import {FakeCardProvider} from './fakes/cardprovider';
-import {Card} from '../../../src/modules/card/card'
+import {Deck} from "../../../src/modules/card/deck";
+import {Sequential} from "../../../src/modules/card/retrievers/sequential";
 
 //TODO: Make random
 describe('On Empty Deck getNextCard', function () {
     it('should return empty array', function () {
         let sequentialRetriever = new ErrorRetriever();
-        let currentDeck = new deck.Deck(sequentialRetriever);
+        let currentDeck = new Deck(sequentialRetriever);
         return currentDeck.getNextCard()
             .then(card => {
                 expect(true).to.be.false
@@ -27,8 +27,8 @@ describe('Sequential card retriever Next Card', function () {
         let firstCard = {front: "Front First", back: "Back First"};
         let secondCard = {front: "Front Second", back: "Back Second"};
         let cardProvider = new FakeCardProvider([firstCard, secondCard]);
-        let sequentialRetriever = new seq.Sequential(cardProvider);
-        let currentDeck = new deck.Deck(sequentialRetriever);
+        let sequentialRetriever = new Sequential(cardProvider);
+        let currentDeck = new Deck(sequentialRetriever);
         return currentDeck.getNextCard().then(
             card => {
                 expect(card).to.be.equals(firstCard)
@@ -42,14 +42,13 @@ describe('Sequential card retriever', function () {
         let firstCard = {front: "Front First", back: "Back First"};
         let secondCard = {front: "Front Second", back: "Back Second"};
         let cardProvider = new FakeCardProvider([firstCard, secondCard]);
-        let sequentialRetriever = new seq.Sequential(cardProvider);
-        let currentDeck = new deck.Deck(sequentialRetriever);
+        let sequentialRetriever = new Sequential(cardProvider);
+        let currentDeck = new Deck(sequentialRetriever);
         return currentDeck.getNextCard().then((card1) =>
             currentDeck.getNextCard().then(card2 => {
                 currentDeck.getPreviousCard().then(cardBack => {
                     cardBack => expect(cardBack).to.be.equals(firstCard)
                 })
-
             })
         );
     });
