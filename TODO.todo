@@ -4,11 +4,21 @@ To Test:
         ✔ Get Next card from deck(Promise) @done (5/23/2017, 10:49:02 AM)
         ✔ Get previous card @done (5/23/2017, 10:49:05 AM)
         ☐ Get Recommended card (Strategy different algorithms)
+            ✔ Random @done (6/3/2017, 6:03:38 PM)
+            ✔ Sequential (Default) @done (6/3/2017, 6:03:40 PM)
+            ☐ ML
+            ☐ Other
 
     Card:
         ☐ Get Properties
         ☐ Save card data
         ☐ Talk
-
+    Image:
+        ☐ List images
+        ☐ Assign image to card
     IndexDB: 
         ☐ Integrate with DB
+        ☐ Make BD structure
+
+
+  && istanbul  cover _mocha -- -- -u exports -R out/tests/**/*.test.js"

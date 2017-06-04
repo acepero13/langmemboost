@@ -1,3 +1,4 @@
+
 {
   "name": "langmemboost",
   "version": "1.0.0",
@@ -6,6 +7,7 @@
   "scripts": {
     "build": "gulp build-app",
     "test": "mocha out/tests/**/*.js"
+   
   },
   "keywords": [
     "memory",
@@ -28,8 +30,11 @@
     "gulp-typescript": "^3.1.6",
     "gulp-uglify": "^2.1.2",
     "gulp-watch": "^4.3.11",
+    "istanbul": "1.1.0-alpha.1",
+    "mocha": "^3.4.2",
     "remap-istanbul": "^0.9.5",
     "run-sequence": "^1.2.2",
+    "ts-node": "^3.0.4",
     "tslint": "^5.2.0",
     "typescript": "^2.3.2",
     "vinyl-buffer": "^1.0.0",

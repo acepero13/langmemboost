@@ -15,6 +15,7 @@
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
         "lib": ["dom", "es2015.promise", "es5"]
+    
         
     }
 }

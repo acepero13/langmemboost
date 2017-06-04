@@ -39,6 +39,7 @@ describe('Sequential card retriever Next Card', function () {
     });
 });
 
+
 function makeSequentialRetriever(cardProvider: FakeCardProvider) {
     let sequentialIterator = new SequentialIterator([]);
     let sequentialRetriever = new CardRetriever(cardProvider, sequentialIterator);

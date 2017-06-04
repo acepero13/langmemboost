@@ -28,7 +28,7 @@ export class RandomIterator<T> implements Iterator<T>{
     } 
 
     public hasNext(): boolean {
-        return this.items.length > this.index;
+        return this.items.length > 0;
     }
 
     public hasPrevious(): boolean {

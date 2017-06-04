@@ -7,18 +7,45 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Tests With Coverage",
+            "program": "${workspaceRoot}/node_modules/istanbul/lib/cli.js",
+            "cwd": "${workspaceRoot}",
+            "args": [
+                "cover",
+                "_mocha",
+                "-- -- -u",
+                "exports",
+                "-R",
+                "${workspaceRoot}/out/tests/**/*.js"
+            ],
+            "internalConsoleOptions": "openOnSessionStart",
+            "sourceMaps": true
+            
+
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Mocha Tests",
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+            "cwd": "${workspaceRoot}",
             "args": [
                 "-u",
                 "tdd",
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceRoot}/out/tests/**/*.js"
+                "${workspaceRoot}/out/tests/**/*.js",
+                "--recursive"
             ],
             "internalConsoleOptions": "openOnSessionStart",
-            "sourceMaps": true
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceRoot}/out/src/**/*.js",
+                "${workspaceRoot}/out/tests/**/*.js"
+            ],
+            "stopOnEntry": false,
+            "env": { "NODE_ENV": "testing"}
         }
     ]
 }
