@@ -5,36 +5,36 @@ export class RandomWithNavigation<T> implements Iterator<T>{
     index: number;
     items: T[];
     private randomIterator: RandomIterator<T>;
-    private sequentialNavigation: SequentialForRandom<T>;
+    private cached: SequentialForRandom<T>;
 
     public constructor(items: T[]){
-        this.sequentialNavigation = new SequentialForRandom<T>([]);
+        this.cached = new SequentialForRandom<T>([]);
         this.randomIterator = new RandomIterator(items);
     }
 
     next(): T {
-        if(this.sequentialNavigation.hasNext()){
-            return this.sequentialNavigation.next();
+        if(this.cached.hasNext()){
+            return this.cached.next();
         }
         let item = this.randomIterator.next();
-        this.sequentialNavigation.add(item);
+        this.cached.add(item);
         return item;
     }
 
     previous(): T {
-        if(this.sequentialNavigation.hasPrevious()){
-            return this.sequentialNavigation.previous();
+        if(this.cached.hasPrevious()){
+            return this.cached.previous();
         }
         return this.randomIterator.previous();
     }
     hasNext(): boolean {
-        return this.sequentialNavigation.hasNext() || this.randomIterator.hasNext();
+        return this.cached.hasNext() || this.randomIterator.hasNext();
     }
     hasPrevious(): boolean {
-        return this.sequentialNavigation.hasPrevious();
+        return this.cached.hasPrevious();
     }
     reset(): void {
-        this.sequentialNavigation.reset();
+        this.cached.reset();
     }
     each(callback: void): void {
         throw new Error("Method not implemented.");

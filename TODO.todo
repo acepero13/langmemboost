@@ -1,6 +1,6 @@
 To Test:
     Deck:
-        ☐ Get all cards (With a defualt max)
+        ☐ Algorithm to asses that a given answer is correct
         ✔ Get Next card from deck(Promise) @done (5/23/2017, 10:49:02 AM)
         ✔ Get previous card @done (5/23/2017, 10:49:05 AM)
         ☐ Get Recommended card (Strategy different algorithms)
@@ -8,6 +8,8 @@ To Test:
             ✔ Sequential (Default) @done (6/3/2017, 6:03:40 PM)
             ☐ ML
             ☐ Other
+         ☐ Get all cards (With a defualt max)
+       
 
     Card:
         ☐ Get Properties

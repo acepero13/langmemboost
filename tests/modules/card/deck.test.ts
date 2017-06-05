@@ -39,7 +39,6 @@ describe('Sequential card retriever Next Card', function () {
     });
 });
 
-
 function makeSequentialRetriever(cardProvider: FakeCardProvider) {
     let sequentialIterator = new SequentialIterator([]);
     let sequentialRetriever = new CardRetriever(cardProvider, sequentialIterator);
@@ -52,12 +51,13 @@ describe('Sequential card retriever', function () {
         let cardProvider = new FakeCardProvider([firstCard, secondCard]);
         let sequentialRetriever = makeSequentialRetriever(cardProvider);
         let currentDeck = new Deck(sequentialRetriever);
-        return currentDeck.getNextCard().then((card1) =>
-            currentDeck.getNextCard().then(card2 => {
-                currentDeck.getPreviousCard().then(cardBack => {
-                    cardBack => expect(cardBack).to.be.equals(firstCard)
+        return currentDeck.getNextCard().then((card1) =>{
+            return currentDeck.getNextCard().then(card2 => {
+               return currentDeck.getPreviousCard().then((cardBack) => {
+                    expect(cardBack).to.be.equals(firstCard);
                 })
             })
+    }
         );
     });
 });
