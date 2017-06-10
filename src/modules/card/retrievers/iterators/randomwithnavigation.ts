@@ -1,13 +1,14 @@
 import { SequentialForRandom } from './sequentialforrandom';
 import { RandomIterator } from './random';
 import { Iterator } from './iterator';
-export class RandomWithNavigation<T> implements Iterator<T>{
-    index: number;
-    items: T[];
+import { AbstractIterator } from './abstractiterator';
+export class RandomWithNavigation<T> extends AbstractIterator<T>{
+
     private randomIterator: RandomIterator<T>;
     private cached: SequentialForRandom<T>;
 
     public constructor(items: T[]){
+        super(items);
         this.cached = new SequentialForRandom<T>([]);
         this.randomIterator = new RandomIterator(items);
     }
@@ -31,13 +32,10 @@ export class RandomWithNavigation<T> implements Iterator<T>{
         return this.cached.hasNext() || this.randomIterator.hasNext();
     }
     hasPrevious(): boolean {
-        return this.cached.hasPrevious();
+        return this.cached.hasPrevious() || this.randomIterator.hasPrevious();
     }
     reset(): void {
         this.cached.reset();
-    }
-    each(callback: void): void {
-        throw new Error("Method not implemented.");
     }
 
 }

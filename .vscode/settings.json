@@ -1,3 +1,4 @@
  {
-     "mocha.files.rootPath": "out"
-     }
+    "mocha.files.rootPath": "out",
+    "jscpd.minLines": 5
+}

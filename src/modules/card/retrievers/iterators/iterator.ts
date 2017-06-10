@@ -6,5 +6,5 @@ export interface Iterator<T>{
     hasNext():boolean;
     hasPrevious():boolean;
     reset():void;
-    each(callback: (void)):void;
+    each(callback: (item: T)=> any): void ;
 }

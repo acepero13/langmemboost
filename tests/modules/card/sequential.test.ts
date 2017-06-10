@@ -81,6 +81,8 @@ describe('Test sequential retriever getPreviousCard', function () {
 });
 
 
+
+
 function createFakeProvider(): FakeCardProvider {
     let firstCard = {front: "Front First", back: "Back First"};
     let secondCard = {front: "Front Second", back: "Back Second"};

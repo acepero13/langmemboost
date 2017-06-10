@@ -1,12 +1,10 @@
 import { Iterator } from './iterator';
 import { Card } from '../../card'
-export class SequentialIterator<T> implements Iterator<T> {
-    public index: number;
-    public items: Array<T>;
+import { AbstractIterator } from './abstractiterator';
+export class SequentialIterator<T> extends AbstractIterator<T> {
 
     public constructor(items: Array<T>) {
-        this.items = items;
-        this.index = 0;
+        super(items);
     }
     public next(): T {
         if (this.hasNext()) {
@@ -33,10 +31,6 @@ export class SequentialIterator<T> implements Iterator<T> {
 
     public reset(): void {
         this.index = 0;
-    }
-
-    public each(callback: (void)): void {
-        throw new Error('Not implemented yet.');
     }
 
     public hasPrevious(): boolean {

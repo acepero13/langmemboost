@@ -55,3 +55,17 @@ describe('Test Sequential Interator', function(){
         expect(it.next()).to.be.equals(firstCard);
     });
 });
+
+describe('TestEach from AbstractITerator', function(){
+    it('should iterate over every item when calling each', function(){
+        let firstCard = {front: "Front First", back: "Back First"};
+        let secondCard = {front: "Front Second", back: "Back Second"};
+        let it = new SequentialIterator([firstCard, secondCard]);
+        let counter = 0;
+        it.each(function(item){
+           
+           counter++;     
+        });
+        expect(2).to.be.equals(counter);
+    })
+});

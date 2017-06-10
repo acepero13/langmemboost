@@ -18,6 +18,15 @@ export class SequentialForRandom<T> extends SequentialIterator<T>{
         }
     }
 
+    public next():T{
+        if(this.index == this.items.length || this.index == 0){
+            return super.next();
+        }
+        if(this.hasNext()){
+            return this.items[++this.index];
+        }
+    }
+
     public add(item: T){
         this.items.push(item);
         this.next();
