@@ -20,7 +20,6 @@ describe('Test Random Iterator with empty array', function () {
 });
 
 
-
 describe('Test Random Iterator with filled array and no navigation used', function(){
     it('should return true when calling hasNext on filled array', function(){
         let it = new RandomWithNavigation([1,2,3,4,5]);
@@ -98,7 +97,7 @@ describe('Test random iterator with filled array and navigation', function(){
 
 describe('RandomIterator', function(){
     it('should throw Not Supported Exception when calling reset', function(){
-        let it = new RandomIterator​​([]);
+        let it = new RandomIterator([]);
         expect(() => it.reset()).to.throw('Not supported.');
     })
 });

@@ -1,15 +1,15 @@
-import { SequentialForRandom } from './sequentialforrandom';
 import { RandomIterator } from './random';
 import { Iterator } from './iterator';
 import { AbstractIterator } from './abstractiterator';
+import { SequentialIterator } from "./sequential";
 export class RandomWithNavigation<T> extends AbstractIterator<T>{
 
     private randomIterator: RandomIterator<T>;
-    private cached: SequentialForRandom<T>;
+    private cached: SequentialIterator<T>;
 
     public constructor(items: T[]){
         super(items);
-        this.cached = new SequentialForRandom<T>([]);
+        this.cached = new SequentialIterator<T>([]);
         this.randomIterator = new RandomIterator(items);
     }
 
@@ -18,8 +18,13 @@ export class RandomWithNavigation<T> extends AbstractIterator<T>{
             return this.cached.next();
         }
         let item = this.randomIterator.next();
-        this.cached.add(item);
+        this.addItemToCache(item);
         return item;
+    }
+
+    private addItemToCache(item: T): void{
+        this.cached.items.push(item);
+        this.cached.next();
     }
 
     previous(): T {
