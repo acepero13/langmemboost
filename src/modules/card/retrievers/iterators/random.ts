@@ -36,7 +36,6 @@ export class RandomIterator<T> extends AbstractIterator<T>{
         throw new Error('Not supported.');
     }
     
-
     private getRandomIndex() {
         let max = this.items.length - 1;
         let min = 0;

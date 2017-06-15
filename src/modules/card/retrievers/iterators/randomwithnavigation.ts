@@ -42,5 +42,4 @@ export class RandomWithNavigation<T> extends AbstractIterator<T>{
     reset(): void {
         this.cached.reset();
     }
-
 }
