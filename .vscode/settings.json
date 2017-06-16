@@ -1,4 +1,9 @@
  {
     "mocha.files.rootPath": "out",
-    "jscpd.minLines": 5
+    "jscpd.minLines": 5,
+    "bma-coverage":{
+        "lcovs":[
+            "./coverage/lcov.info"
+        ]
+    }
 }

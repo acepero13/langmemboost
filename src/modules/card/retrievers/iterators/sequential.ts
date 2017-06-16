@@ -11,28 +11,26 @@ export class SequentialIterator<T> extends AbstractIterator<T> {
     }
     public next(): T {
         if (this.hasNext()) {
-            this.positioningBeforeNext();
-            return this.items[this.index++];
+            return this.getNextItem();
         }
         throw new Error('Item has no next');
     }
 
+    private getNextItem(): T {
+        this.positioningBeforeNext();
+        return this.items[this.index++]
+    }
+
     public previous(): T {
         if (this.hasPrevious()) {
-            this.positioningBeforePrevious();
-            return this.items[--this.index];
+            return this.getPreviousItem();
         }
         throw new Error('Item has no previous');
     }
 
-    private updateCallingFlagsForPrevious(): void {
-        this.nextWasCalled = false;
-        this.previousWasCalled = true;
-    }
-
-    private updateCallingFlagsForNext(): void {
-        this.nextWasCalled = true;
-        this.previousWasCalled = false;
+    private getPreviousItem(): T {
+        this.positioningBeforePrevious();
+        return this.items[--this.index];
     }
 
     private positioningBeforeNext(): void {
@@ -59,5 +57,15 @@ export class SequentialIterator<T> extends AbstractIterator<T> {
 
     public hasPrevious(): boolean {
         return this.index > 1;
+    }
+
+    private updateCallingFlagsForPrevious(): void {
+        this.nextWasCalled = false;
+        this.previousWasCalled = true;
+    }
+
+    private updateCallingFlagsForNext(): void {
+        this.nextWasCalled = true;
+        this.previousWasCalled = false;
     }
 }
