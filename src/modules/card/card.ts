@@ -1,4 +1,4 @@
 export interface Card{
-    front: String;
-    back: String;
+    front: string;
+    back: string;
 }

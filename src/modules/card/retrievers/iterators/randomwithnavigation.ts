@@ -1,6 +1,6 @@
 import { RandomIterator } from './random';
-import { Iterator } from './iterator';
-import { AbstractIterator } from './abstractiterator';
+import { Iterator } from './interfaces/iterator';
+import { AbstractIterator } from './interfaces/abstractiterator';
 import { SequentialIterator } from "./sequential";
 export class RandomWithNavigation<T> extends AbstractIterator<T>{
 

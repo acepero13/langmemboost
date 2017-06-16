@@ -1,71 +1,61 @@
-import { Iterator } from './interfaces/iterator';
-import { Card } from '../../card'
-import { AbstractIterator } from './interfaces/abstractiterator';
-export class SequentialIterator<T> extends AbstractIterator<T> {
-
-    private nextWasCalled: boolean = false;
-    private previousWasCalled: boolean = false;
-
-    public constructor(items: Array<T>) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const abstractiterator_1 = require("./interfaces/abstractiterator");
+class SequentialIterator extends abstractiterator_1.AbstractIterator {
+    constructor(items) {
         super(items);
+        this.nextWasCalled = false;
+        this.previousWasCalled = false;
     }
-    public next(): T {
+    next() {
         if (this.hasNext()) {
             return this.getNextItem();
         }
         throw new Error('Item has no next');
     }
-
-    private getNextItem(): T {
+    getNextItem() {
         this.positioningBeforeNext();
-        return this.items[this.index++]
+        return this.items[this.index++];
     }
-
-    public previous(): T {
+    previous() {
         if (this.hasPrevious()) {
             return this.getPreviousItem();
         }
         throw new Error('Item has no previous');
     }
-
-    private getPreviousItem(): T {
+    getPreviousItem() {
         this.positioningBeforePrevious();
         return this.items[--this.index];
     }
-
-    private positioningBeforeNext(): void {
+    positioningBeforeNext() {
         if (this.previousWasCalled) {
             this.index++;
         }
         this.updateCallingFlagsForNext();
     }
-
-    private positioningBeforePrevious(): void {
+    positioningBeforePrevious() {
         if (this.nextWasCalled) {
             this.index = this.index - 1;
         }
         this.updateCallingFlagsForPrevious();
     }
-
-    public hasNext(): boolean {
+    hasNext() {
         return this.items.length > this.index;
     }
-
-    public reset(): void {
+    reset() {
         this.index = 0;
     }
-
-    public hasPrevious(): boolean {
+    hasPrevious() {
         return this.index > 1;
     }
-
-    private updateCallingFlagsForPrevious(): void {
+    updateCallingFlagsForPrevious() {
         this.nextWasCalled = false;
         this.previousWasCalled = true;
     }
-
-    private updateCallingFlagsForNext(): void {
+    updateCallingFlagsForNext() {
         this.nextWasCalled = true;
         this.previousWasCalled = false;
     }
 }
+exports.SequentialIterator = SequentialIterator;
+//# sourceMappingURL=sequential.js.map

@@ -1,5 +1,5 @@
 import { SequentialIterator } from './sequential';
-import { AbstractIterator } from './abstractiterator';
+import { AbstractIterator } from './interfaces/abstractiterator';
 export class RandomIterator<T> extends AbstractIterator<T>{
 
     public constructor(items: Array<T>) {

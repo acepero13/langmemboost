@@ -2,7 +2,7 @@ import { CardRetriever } from '../cardretriever';
 
 import { CardProvider } from "../../providers/cardprovider";
 import { SequentialIterator } from "../iterators/sequential";
-import { Iterator } from "../iterators/iterator";
+import { Iterator } from "../iterators/interfaces/iterator";
 import {Card} from '../../card'
 
 export class CardPromiser {

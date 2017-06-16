@@ -1,4 +1,4 @@
-import {Iterator} from './iterators/iterator';
+import {Iterator} from './iterators/interfaces/iterator';
 import {Retriever} from './retriever';
 import {Card} from '../card'
 import {CardProvider} from '../providers/cardprovider'
