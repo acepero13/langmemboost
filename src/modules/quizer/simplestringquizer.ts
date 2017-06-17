@@ -2,22 +2,26 @@
 import { Quizer } from "./interfaces/quizer";
 import { Card } from "../card/card";
 import "../../utils/stringextensions"
+import { QuizLevel } from "./quizlevel";
 
 export class SimpleStringQuizer implements Quizer {
+    
     static readonly WILDCARD = '#';
     quiz: string;
     answer: string;
     card: Card;
     renderer: any;
-    complexityLevel: number;
+    replacements: number;
     wildcardsCount: number;
 
     public constructor(card: Card, complexityLevel: number, renderer: any) {
         this.card = card;
-        this.complexityLevel = complexityLevel;
+        
         this.renderer = renderer;
         this.answer = this.card.back;
         this.quiz = this.answer;
+        let quizLevel = new QuizLevel(this.answer, complexityLevel);
+        this.replacements = quizLevel.getReplacements();
     }
 
     retrieveQuiz(): string {
@@ -28,10 +32,9 @@ export class SimpleStringQuizer implements Quizer {
         return this.quiz;
     }
     private notEnoughtWildCards():boolean{
-        return this.wildcardsCount < this.complexityLevel
+        return this.wildcardsCount < this.replacements
     }
     
-
     private replaceCharRandomly(): void {
         let randomCharPos = this.quiz.randomCharIndex();
         if (this.characterIsNotWildcard (randomCharPos)){
@@ -47,6 +50,10 @@ export class SimpleStringQuizer implements Quizer {
         throw new Error("Method not implemented.");
     }
     rateAnswer(): number {
+        throw new Error("Method not implemented.");
+    }
+
+    render(): void {
         throw new Error("Method not implemented.");
     }
 
