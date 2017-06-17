@@ -7,6 +7,10 @@ import { Card } from "../../../src/modules/card/card";
 
 import "../../../src/utils/stringextensions"
 
+//TODO: Make quiz validator (Levensthein)
+//TODO: Make quiz rater (Good, Regular, Bad) 
+//TODO: Make renderer (with an id so i can have statics like[#Bad with renderer X])
+
 describe('Test SimpleStringQuizer', function () {
     it('should on complexity SuperEasy return one wildcard', function () {
         let card = { front: "Front First", back: "Back First" };
@@ -25,7 +29,5 @@ function assertOccurences(card: Card, complexity: number, repetitions: number) {
         let quizer = new SimpleStringQuizer(card, complexity, null);
         let result = quizer.retrieveQuiz();
         let countApprances = result.countOccurrences(SimpleStringQuizer.WILDCARD);
-        console.log(result);
         expect(countApprances).to.be.equals(repetitions);
 }
-

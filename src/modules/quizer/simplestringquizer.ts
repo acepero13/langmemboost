@@ -16,7 +16,6 @@ export class SimpleStringQuizer implements Quizer {
 
     public constructor(card: Card, complexityLevel: number, renderer: any) {
         this.card = card;
-        
         this.renderer = renderer;
         this.answer = this.card.back;
         this.quiz = this.answer;
@@ -27,15 +26,16 @@ export class SimpleStringQuizer implements Quizer {
     retrieveQuiz(): string {
         this.wildcardsCount = 0;
         while (this.notEnoughtWildCards()) {
-            this.replaceCharRandomly();
+            this.replaceCharRandomlyForWildcard();
         }
         return this.quiz;
     }
+
     private notEnoughtWildCards():boolean{
-        return this.wildcardsCount < this.replacements
+        return this.wildcardsCount < this.replacements;
     }
-    
-    private replaceCharRandomly(): void {
+
+    private replaceCharRandomlyForWildcard(): void {
         let randomCharPos = this.quiz.randomCharIndex();
         if (this.characterIsNotWildcard (randomCharPos)){
             this.quiz = this.quiz.replaceCharAt(randomCharPos, SimpleStringQuizer.WILDCARD);
@@ -46,9 +46,11 @@ export class SimpleStringQuizer implements Quizer {
     private  characterIsNotWildcard(randomCharPos:number):boolean {
         return this.quiz[randomCharPos] != SimpleStringQuizer.WILDCARD
     }
+
     validateQuiz(): number {
         throw new Error("Method not implemented.");
     }
+
     rateAnswer(): number {
         throw new Error("Method not implemented.");
     }

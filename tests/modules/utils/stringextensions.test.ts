@@ -32,4 +32,5 @@ describe('Test string extensions', function(){
         expect("Hello world".countOccurrences("l")).to.be.equals(3);
         expect("Hello world".countOccurrences("ll")).to.be.equals(1);
     });
+
 });

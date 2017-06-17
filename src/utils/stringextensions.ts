@@ -7,6 +7,7 @@
         isEmpty():boolean;
         contains(toFind: string): boolean;
     }
+    
     if (!String.prototype.isEmpty) {
         String.prototype.isEmpty = function() : boolean{
             return this == null || this.length == 0;
@@ -29,9 +30,7 @@
 
     if (!String.prototype.replaceCharAt) {
         String.prototype.replaceCharAt = function(index:number, replacement:string) : string{
-            return this.substr(0, index)
-            + replacement
-            + this.substr(index + replacement.length);
+            return this.substr(0, index) + replacement + this.substr(index + replacement.length);
         }
     }
 
@@ -40,6 +39,8 @@
             return (this.split(toFind).length - 1);
         }
     }
+
+    
 
 
     
