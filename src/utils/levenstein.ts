@@ -1,5 +1,5 @@
 export class LevensteinDistance {
-    
+
     private costMatrix: number[][];
     private str: string;
     private against: string;
@@ -11,7 +11,6 @@ export class LevensteinDistance {
         this.defaultSubstitutionCost = defaultSubstitutionCost;
         this.ignoreCase = ignoreCase;
     }
-
     public distance(str: string, against: string): number {
         if(str.isEmpty())
             return against.length;
@@ -23,7 +22,6 @@ export class LevensteinDistance {
         this.computeCostMatrix();
         return this.getDistance();
     }
-    
 
     private setStringsToCompare(str:string, against: string){
         if(this.ignoreCase){
@@ -46,7 +44,6 @@ export class LevensteinDistance {
     }
 
     private computeCostMatrix(): void {
-        let substitutionCost = 0;
         for (let strIndex = 1; strIndex <= this.str.length; strIndex++) {
             for (let againstIndex = 1; againstIndex <= this.against.length; againstIndex++) {
                 this.updateCostMatrix(strIndex, againstIndex);
@@ -63,12 +60,12 @@ export class LevensteinDistance {
     }
 
     private updateCostMatrix(strIndex: number, againstIndex:number):void{
-        
-        this.costMatrix[strIndex][againstIndex] = Math.min(
+        this.costMatrix[strIndex][againstIndex] = 
+            Math.min(
                     this.getDeletionCost(strIndex, againstIndex), 
                     this.getInsertionCost(strIndex, againstIndex), 
                     this.getSubstitutionCost(strIndex, againstIndex)
-        );
+            );
     }
 
     private getDeletionCost(strIndex: number, againstIndex:number):number{
@@ -83,6 +80,4 @@ export class LevensteinDistance {
         let substitutionCost = this.computeSubstitutionCost(strIndex, againstIndex);
         return this.costMatrix[strIndex - 1][againstIndex - 1]+ substitutionCost;
     }
-
-
 }
