@@ -6,28 +6,29 @@ export class LevensteinDistance {
     private defaultSubstitutionCost: number;
     private ignoreCase: boolean;
 
-    public constructor(ignoreCase:boolean = false, defaultSubstitutionCost:number = 1) {
+    public constructor(ignoreCase: boolean = false, defaultSubstitutionCost: number = 1) {
         this.costMatrix = [];
         this.defaultSubstitutionCost = defaultSubstitutionCost;
         this.ignoreCase = ignoreCase;
     }
+
     public distance(str: string, against: string): number {
-        if(str.isEmpty())
+        if (str.isEmpty())
             return against.length;
-        if(against.isEmpty())
+        if (against.isEmpty())
             return str.length;
-        
+
         this.setStringsToCompare(str, against);
         this.initializeCostMatrix();
         this.computeCostMatrix();
         return this.getDistance();
     }
 
-    private setStringsToCompare(str:string, against: string){
-        if(this.ignoreCase){
+    private setStringsToCompare(str: string, against: string) {
+        if (this.ignoreCase) {
             this.str = str.toLowerCase();
             this.against = against.toLowerCase();
-        }else{
+        } else {
             this.str = str;
             this.against = against;
         }
@@ -51,33 +52,33 @@ export class LevensteinDistance {
         }
     }
 
-    private getDistance():number{
+    private getDistance(): number {
         return this.costMatrix[this.str.length][this.against.length];
     }
 
-    private  computeSubstitutionCost(strIndex: number, againstIndex:number): number {
-         return (this.str[strIndex] == this.against[againstIndex]) ? 0: this.defaultSubstitutionCost;      
+    private  computeSubstitutionCost(strIndex: number, againstIndex: number): number {
+        return (this.str[strIndex] == this.against[againstIndex]) ? 0 : this.defaultSubstitutionCost;
     }
 
-    private updateCostMatrix(strIndex: number, againstIndex:number):void{
-        this.costMatrix[strIndex][againstIndex] = 
+    private updateCostMatrix(strIndex: number, againstIndex: number): void {
+        this.costMatrix[strIndex][againstIndex] =
             Math.min(
-                    this.getDeletionCost(strIndex, againstIndex), 
-                    this.getInsertionCost(strIndex, againstIndex), 
-                    this.getSubstitutionCost(strIndex, againstIndex)
+                this.getDeletionCost(strIndex, againstIndex),
+                this.getInsertionCost(strIndex, againstIndex),
+                this.getSubstitutionCost(strIndex, againstIndex)
             );
     }
 
-    private getDeletionCost(strIndex: number, againstIndex:number):number{
+    private getDeletionCost(strIndex: number, againstIndex: number): number {
         return this.costMatrix[strIndex - 1][againstIndex] + 1
     }
 
-    private getInsertionCost(strIndex: number, againstIndex:number):number{
+    private getInsertionCost(strIndex: number, againstIndex: number): number {
         return this.costMatrix[strIndex][againstIndex - 1] + 1;
     }
 
-    private getSubstitutionCost(strIndex: number, againstIndex:number):number{
+    private getSubstitutionCost(strIndex: number, againstIndex: number): number {
         let substitutionCost = this.computeSubstitutionCost(strIndex, againstIndex);
-        return this.costMatrix[strIndex - 1][againstIndex - 1]+ substitutionCost;
+        return this.costMatrix[strIndex - 1][againstIndex - 1] + substitutionCost;
     }
 }

@@ -1,8 +1,8 @@
-import {Card} from '../card'
+import {Card} from "../card";
 
 
-export class CardProvider{
-    getCards(): Promise<Card[]>{
+export class CardProvider {
+    getCards(): Promise<Card[]> {
         throw new Error("Not Implemented");
     }
 }

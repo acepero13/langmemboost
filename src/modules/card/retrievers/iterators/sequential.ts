@@ -1,6 +1,4 @@
-import { Iterator } from './interfaces/iterator';
-import { Card } from '../../card'
-import { AbstractIterator } from './interfaces/abstractiterator';
+import {AbstractIterator} from "./interfaces/abstractiterator";
 export class SequentialIterator<T> extends AbstractIterator<T> {
 
     private nextWasCalled: boolean = false;
@@ -9,6 +7,7 @@ export class SequentialIterator<T> extends AbstractIterator<T> {
     public constructor(items: Array<T>) {
         super(items);
     }
+
     public next(): T {
         if (this.hasNext()) {
             return this.getNextItem();
