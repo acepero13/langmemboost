@@ -2,10 +2,13 @@
 /// <reference path="../../../src/utils/stringextensions.ts" />
 import { expect } from 'chai';
 import { SimpleStringQuizer } from "../../../src/modules/quizer/simplestringquizer";
-import { QuizLevel } from "../../../src/modules/quizer/quizlevel";
+import { Card } from '../../../src/modules/card/card';
+import { QuizLevel } from '../../../src/modules/quizer/quizlevel';
+import { QuizValidator } from '../../../src/modules/quizer/quizvalidator';
+import { SimpleStringQuizer } from '../../../src/modules/quizer/simplestringquizer';
 import { Card } from "../../../src/modules/card/card";
 
-import "../../../src/utils/stringextensions"
+import '../../../src/utils/stringextensions';
 
 //TODO: Make quiz validator (Levensthein)
 //TODO: Make quiz rater (Good, Regular, Bad) 
@@ -23,6 +26,14 @@ describe('Test SimpleStringQuizer', function () {
         let complexity = QuizLevel.EASY;
         assertOccurences(card, complexity, 5);
     });
+
+    it('should return GOOD when rateAsnwer with good answer', function(){
+        let card = { front: "Front First", back: "Back First" };
+        let quizer = new SimpleStringQuizer(card, QuizLevel.EASY, null);
+        expect(quizer.rateAnswer("Back Frst")).to.be.equals(QuizValidator​​.GOOD);
+    });
+
+
 });
 
 function assertOccurences(card: Card, complexity: number, repetitions: number) {

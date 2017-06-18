@@ -5,7 +5,6 @@ export interface Quizer {
     replacements: number;
     quiz: string;
     retrieveQuiz(): string;
-    validateQuiz(): number;
-    rateAnswer(): number;
+    rateAnswer(answer:string): number;
     render(): void;
 }

@@ -20,15 +20,15 @@ export class SimpleStringQuizer implements Quizer {
         this.card = card;
         this.renderer = renderer;
         this.quiz = this.card.back;
-        let quizLevel = new QuizLevel(this.card.back, complexityLevel);
-        this.quizValidator = new QuizValidator();
+        let quizLevel = new QuizLevel(this.quiz, complexityLevel);
+        this.quizValidator = new QuizValidator(this.quiz);
         this.replacements = quizLevel.getReplacements();
     }
 
     retrieveQuiz(): string {
         this.wildcardsCount = 0;
         while (this.notEnoughtWildCards()) {
-            this.replaceCharRandomlyForWildcard();
+            this.replaceRandomCharWithWildcard();
         }
         return this.quiz;
     }
@@ -37,7 +37,7 @@ export class SimpleStringQuizer implements Quizer {
         return this.wildcardsCount < this.replacements;
     }
 
-    private replaceCharRandomlyForWildcard(): void {
+    private replaceRandomCharWithWildcard(): void {
         let randomCharPos = this.quiz.randomCharIndex();
         if (this.characterIsNotWildcard(randomCharPos)) {
             this.quiz = this.quiz.replaceCharAt(randomCharPos, SimpleStringQuizer.WILDCARD);
@@ -49,12 +49,8 @@ export class SimpleStringQuizer implements Quizer {
         return this.quiz[randomCharPos] != SimpleStringQuizer.WILDCARD
     }
 
-    validateQuiz(): number {
-        throw new Error("Method not implemented.");
-    }
-
-    rateAnswer(): number {
-        throw new Error("Method not implemented.");
+    rateAnswer(answer:string): number {
+       return this.quizValidator.validate(answer);
     }
 
     render(): void {

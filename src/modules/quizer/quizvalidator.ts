@@ -7,8 +7,10 @@ export class QuizValidator {
     public static readonly GOOD = 0.2;
     public static readonly REGULAR = 0.4;
     public static readonly BAD = 1;
-    private static readonly rates = [QuizValidator.GOOD, QuizValidator.REGULAR, QuizValidator.BAD];
+
     
+    private static readonly rates = [QuizValidator.GOOD, QuizValidator.REGULAR, QuizValidator.BAD];
+    private static readonly SHORT_WORD = 4;
     
     private levensteinCalculator: LevensteinDistance;
     private original: string;
@@ -26,7 +28,7 @@ export class QuizValidator {
     }
 
     private rateAnswer(): number {
-        if (this.distance >= 1 && this.original.length <= 4) {
+        if (this.madeMistakeInShortWord()) {
             return QuizValidator.BAD;
         }
         return this.calculateRate();
@@ -34,13 +36,17 @@ export class QuizValidator {
 
     private calculateRate():number{
         let i = 0;
-        while (this.isErrorNotInRate(QuizValidator.rates[i])) {
+        while (this.errorIsNotWithinRate(QuizValidator.rates[i])) {
             i++;
         }
         return QuizValidator.rates[i] ;
     }
 
-    private isErrorNotInRate(rate:number):boolean{
+    private errorIsNotWithinRate(rate:number):boolean{
         return this.errorRatio -  rate > 0;
+    }
+
+    private madeMistakeInShortWord():boolean{
+        return this.distance >= 1 && this.original.length <= QuizValidator.SHORT_WORD;
     }
 }
