@@ -50,7 +50,7 @@ export class SimpleStringQuizer implements Quizer {
     }
 
     rateAnswer(answer:string): number {
-       return this.quizValidator.validate(answer);
+       return this.quizValidator.rate(answer);
     }
 
     render(): void {

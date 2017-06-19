@@ -5,13 +5,9 @@ import { SimpleStringQuizer } from "../../../src/modules/quizer/simplestringquiz
 import { Card } from '../../../src/modules/card/card';
 import { QuizLevel } from '../../../src/modules/quizer/quizlevel';
 import { QuizValidator } from '../../../src/modules/quizer/quizvalidator';
-import { SimpleStringQuizer } from '../../../src/modules/quizer/simplestringquizer';
-import { Card } from "../../../src/modules/card/card";
 
 import '../../../src/utils/stringextensions';
 
-//TODO: Make quiz validator (Levensthein)
-//TODO: Make quiz rater (Good, Regular, Bad) 
 //TODO: Make renderer (with an id so i can have statics like[#Bad with renderer X])
 
 describe('Test SimpleStringQuizer', function () {

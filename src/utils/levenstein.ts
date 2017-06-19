@@ -56,7 +56,7 @@ export class LevensteinDistance {
         return this.costMatrix[this.str.length][this.against.length];
     }
 
-    private  computeSubstitutionCost(strIndex: number, againstIndex: number): number {
+    private computeSubstitutionCost(strIndex: number, againstIndex: number): number {
         return (this.str[strIndex] == this.against[againstIndex]) ? 0 : this.defaultSubstitutionCost;
     }
 
@@ -81,4 +81,6 @@ export class LevensteinDistance {
         let substitutionCost = this.computeSubstitutionCost(strIndex, againstIndex);
         return this.costMatrix[strIndex - 1][againstIndex - 1] + substitutionCost;
     }
+
+
 }

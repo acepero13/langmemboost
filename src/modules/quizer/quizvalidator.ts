@@ -1,4 +1,4 @@
-import { LevensteinDistance } from '../../utils/levenstein';
+import {LevensteinDistance} from '../../utils/levenstein';
 
 /**
  * Created by alvaro on 6/17/17.
@@ -16,12 +16,13 @@ export class QuizValidator {
     private original: string;
     private distance = 0;
     private errorRatio = 0;
+    
     public constructor(original: string, ignoreCase: boolean = false) {
         this.original = original;
         this.levensteinCalculator = new LevensteinDistance(ignoreCase, 2);
     }
-
-    public validate(answer: string): number {
+    
+    public rate(answer: string): number {
         this.distance = this.levensteinCalculator.distance(this.original, answer);
         this.errorRatio = this.distance / this.original.length;
         return this.rateAnswer();

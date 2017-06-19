@@ -1,4 +1,5 @@
-export abstract class AbstractIterator<T> implements Iterator​​<T> {
+import {Iterator} from './iterator';
+export abstract class AbstractIterator<T> implements Iterator<T> {
     index: number;
     items: T[];
 

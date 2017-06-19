@@ -2,6 +2,7 @@ import {CardProvider} from "../../providers/cardprovider";
 import {Iterator} from "../iterators/interfaces/iterator";
 import {Card} from "../../card";
 
+
 export class CardPromiser {
     private cardIterator: Iterator<Card>;
     private resolver;
