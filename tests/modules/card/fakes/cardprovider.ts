@@ -1,9 +1,8 @@
 import {CardProvider} from '../../../../src/modules/card/providers/cardprovider';
 import {Card} from '../../../../src/modules/card/card'
-export class FakeCardProvider extends CardProvider{
+export class FakeCardProvider implements CardProvider{
     private cards: Array<Card>;
     public constructor(cards: Array<Card>){
-        super();
         this.cards = cards;
     }
 

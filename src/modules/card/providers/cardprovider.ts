@@ -1,8 +1,5 @@
 import {Card} from "../card";
 
-
-export class CardProvider {
-    getCards(): Promise<Card[]> {
-        throw new Error("Not Implemented");
-    }
+export interface CardProvider {
+    getCards(): Promise<Card[]>;
 }
