@@ -34,13 +34,11 @@ export class FilePromiser<T>{
     }
 
     protected rejectPromise(err, context): void{
-        console.log(err);
         context.rejecter(err);
     } 
 
     protected resolvePromise(data, context): void{
         let cards = JSON.parse(data);
-        console.log(cards);
         context.resolver(cards);
     }
 }
