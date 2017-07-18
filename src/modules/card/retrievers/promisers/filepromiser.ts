@@ -18,6 +18,7 @@ export class FilePromiser<T>{
             this.readPromise();
         })
     }
+    
 
     private readPromise():void{
         let that = this;

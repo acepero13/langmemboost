@@ -37,3 +37,15 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#Map files
+*.js.map
+
+#Generated js
+/src/**/*.js
+tests/**/*.js
+tests/**/*test.js
+
+/out
+${workspaceRoot}/out
+${workspaceRoot}/tests/**/*.js

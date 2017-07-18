@@ -5,8 +5,6 @@ import { FilePromiser } from "../card/retrievers/promisers/filepromiser";
 
 export class JsonProvider implements CardProvider {
     filePromiser: FilePromiser<Card[]>;
-
-
     filename: string;
 
     public constructor(filenamme: string) {

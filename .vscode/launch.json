@@ -4,19 +4,21 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "node",
             "request": "launch",
             "name": "Tests With Coverage",
             "program": "${workspaceRoot}/node_modules/istanbul/lib/cli.js",
             "cwd": "${workspaceRoot}",
+            "preLaunchTask": "tsc",
             "args": [
                 "cover",
                 "_mocha",
                 "-- -- -u",
                 "exports",
                 "-R",
-                "${workspaceRoot}/out/tests/**/*.js"
+                "${workspaceRoot}/tests/**/*.js"
             ],
             "internalConsoleOptions": "openOnSessionStart",
             "sourceMaps": true
@@ -35,7 +37,7 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceRoot}/out/tests/**/*.js",
+                "${workspaceRoot}/tests/**/*.js",
                 "--recursive"
             ],
             "internalConsoleOptions": "openOnSessionStart",
@@ -46,6 +48,24 @@
             ],
             "stopOnEntry": false,
             "env": { "NODE_ENV": "testing"}
-        }
+        },
+        {
+    "name": "Run Tests",
+    "type": "node",
+    "request": "launch",
+    "cwd": "${workspaceRoot}",
+    "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+    "preLaunchTask": "tsc",
+    "args": [
+        "-u", "tdd",
+        "--timeout", "999999",
+        "--colors",
+        "${workspaceRoot}/tests/**/*.js"
+    ],
+    "runtimeArgs": [
+        "--nolazy"
+    ],
+    "sourceMaps": true
+}
     ]
 }

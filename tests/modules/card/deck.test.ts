@@ -6,6 +6,7 @@ import {FakeCardProvider} from './fakes/cardprovider';
 import {Deck} from "../../../src/modules/card/deck";
 import {CardRetriever} from "../../../src/modules/card/retrievers/cardretriever";
 import {SequentialIterator} from "../../../src/modules/card/retrievers/iterators/sequential";
+import {CardProvider} from "../../../src/modules/card/providers/cardprovider";
 
 
 //TODO: Make random
@@ -39,7 +40,7 @@ describe('Sequential card retriever Next Card', function () {
     });
 });
 
-function makeSequentialRetriever(cardProvider: FakeCardProvider) {
+function makeSequentialRetriever(cardProvider: CardProvider) {
     let sequentialIterator = new SequentialIterator([]);
     let sequentialRetriever = new CardRetriever(cardProvider, sequentialIterator);
     return sequentialRetriever;

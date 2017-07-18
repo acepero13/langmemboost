@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build-app",
-    "test": "mocha out/tests/**/*.js"
+    "test": "mocha tests/**/*.js"
    
   },
   "keywords": [
