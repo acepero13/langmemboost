@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es2015",
         "sourceMap": true,
-        //"module": "commonjs",
+        "module": "commonjs",
         "moduleResolution": "node",
         "isolatedModules": false,
         "jsx": "react",
@@ -16,9 +16,10 @@
         "suppressImplicitAnyIndexErrors": true,
         "lib": ["dom", "es2015.promise", "es5"],
         "noImplicitReturns": true,
-        "outDir": "${workspaceRoot}/out"
-        
-    
-        
-    }
+        "watch": true
+    },
+
+    "exclude": [
+        "node_modules"
+    ]
 }

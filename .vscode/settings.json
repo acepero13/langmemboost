@@ -1,5 +1,5 @@
  {
-    "mocha.files.rootPath": "out",
+    "mocha.sourceDir": "src",
     "jscpd.minLines": 5,
     "bma-coverage":{
         "lcovs":[

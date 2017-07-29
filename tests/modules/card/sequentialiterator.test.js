@@ -59,3 +59,4 @@ describe('TestEach from AbstractITerator', function () {
         chai_1.expect(2).to.be.equals(counter);
     });
 });
+//# sourceMappingURL=sequentialiterator.test.js.map

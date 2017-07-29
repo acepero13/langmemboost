@@ -1,43 +1,42 @@
 import { CardProvider } from "../card/providers/cardprovider";
 import { Card } from "../card/card";
 import { FilePromiser } from "../card/retrievers/promisers/filepromiser";
+import { PromiseBuilder } from "../../utils/promisebuilder";
+import {Promified} from "../../utils/promified";
+import {FilePromise} from "../../utils/filepromise";
 
-
+var fs = require('fs');
 export class JsonProvider implements CardProvider {
-    filePromiser: FilePromiser<Card[]>;
+    promiseToRead: FilePromise<Card[]>;
     filename: string;
 
     public constructor(filenamme: string) {
         this.filename = filenamme;
-        this.filePromiser = new FilePromiser<Card[]>(this.filename);
+        this.promiseToRead = new FilePromise(function(data){
+            let cards = JSON.parse(data);
+            return cards;
+        }, this.filename);
     }
 
     getCards(): Promise<Card[]> {
-
-        return this.filePromiser.promise();
+        return this.promiseToRead.promise();
     }
-    
+
 
     getAtLeast(cardNumber: number): Promise<Card[]> {
-        let cardPromise = this.filePromiser.promise();
-        return new Promise<Card[]>((resolve, reject) => {
-            cardPromise.then((cards) => {
-                if (cards.length <= cardNumber)
-                    resolve(cards);
-                else
-                    resolve(cards.slice(0, cardNumber));
-            }).catch((err) => {
-                reject(err);
-            });
-        });
+        
+
+        let builder = new PromiseBuilder<Card[]>();
+        builder.add(function (cards) {
+            if (cards.length <= cardNumber)
+                return cards;
+            else
+                return cards.slice(0, cardNumber);
+        }).addPromise(this.promiseToRead);
+
+        return builder.promise();
+
 
     }
-
-
-
-
-
-
-
 
 }

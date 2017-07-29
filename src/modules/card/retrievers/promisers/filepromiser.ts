@@ -6,9 +6,7 @@ export class FilePromiser<T>{
     resolver: any;
 
     public constructor(filename: string) {
-        
         this.filename = filename;
-        
     }
 
     public promise(): Promise<T>{
@@ -22,9 +20,6 @@ export class FilePromiser<T>{
 
     private readPromise():void{
         let that = this;
-        fs.readFile(this.filename, 'utf-8', function(err,data){
-            that.funcResolver(err, data, that);
-        });
     }
 
     private funcResolver(err, data, context):void{

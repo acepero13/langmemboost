@@ -78,3 +78,4 @@ function createFakeProvider() {
     let cardProvider = new cardprovider_1.FakeCardProvider([firstCard, secondCard]);
     return cardProvider;
 }
+//# sourceMappingURL=sequential.test.js.map

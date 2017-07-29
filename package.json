@@ -1,13 +1,10 @@
-
 {
   "name": "langmemboost",
   "version": "1.0.0",
   "description": "Repetition learning app",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build-app",
     "test": "mocha tests/**/*.js"
-   
   },
   "keywords": [
     "memory",
@@ -21,6 +18,7 @@
     "browserify": "^14.3.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
+    "coveralls": "~2.7.1",
     "gulp": "^3.9.1",
     "gulp-batch": "^1.0.5",
     "gulp-istanbul": "^1.1.1",
@@ -36,9 +34,8 @@
     "run-sequence": "^1.2.2",
     "ts-node": "^3.0.4",
     "tslint": "^5.2.0",
-    "typescript": "^2.3.2",
+    "typescript": "^2.5.0-dev.20170719",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-     "coveralls": "~2.7.1"
+    "vinyl-source-stream": "^1.1.0"
   }
 }

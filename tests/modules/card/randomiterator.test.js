@@ -81,3 +81,4 @@ describe('RandomIterator', function () {
         chai_1.expect(() => it.reset()).to.throw('Not supported.');
     });
 });
+//# sourceMappingURL=randomiterator.test.js.map
