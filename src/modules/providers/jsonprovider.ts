@@ -5,17 +5,17 @@ import { FilePromise } from "../../utils/filepromise";
 import {Promified} from "../../utils/promified";
 
 export class JsonProvider implements CardProvider {
-    promiseToRead: Promified<Card[]>;
+    promiseReadJson: Promified<Card[]>;
     filename: string;
     private cardsNumber: number;
 
     public constructor(filenamme: string) {
         this.filename = filenamme;
-        this.promiseToRead = new FilePromise(this.parseJson, this.filename);
+        this.promiseReadJson = new FilePromise(this.parseJson, this.filename);
     }
 
     getCards(): Promise<Card[]> {
-        return this.promiseToRead.promise();
+        return this.promiseReadJson.promise();
     }
 
     getAtLeast(cardNumber: number): Promise<Card[]> {
@@ -28,7 +28,7 @@ export class JsonProvider implements CardProvider {
         let builder = new PromiseBuilder<Card[]>();
         builder.add((cards) => {
             return this.sliceCards(cards);
-        }).addPromise(this.promiseToRead);
+        }).addPromise(this.promiseReadJson);
         return builder;
     }
 

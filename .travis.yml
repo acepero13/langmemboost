@@ -1,6 +1,10 @@
 language: node_js
+before_script:
+  - npm i -g typescript typings
+  - typings install
+
 script:
-  - npm build
+  - tsc -p .
 node_js:
   - "iojs"
   - "7"
