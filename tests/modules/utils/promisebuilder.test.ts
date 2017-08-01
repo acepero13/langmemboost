@@ -1,6 +1,7 @@
 /// <reference path="../../../typings/globals/mocha/index.d.ts" />
 import { expect } from 'chai';
 import { PromiseBuilder } from "../../../src/utils/promisebuilder";
+import {DefaultPromise} from "../../../src/utils/defaultpromise";
 
 
 describe('PromiseBuilder build Promise from one callback', () => {
@@ -23,6 +24,20 @@ describe('PromiseBuilder build Promise from one callback', () => {
             expect(true).to.be.false;
         });
     });
+
+    it('should have first promise when no primise added', function () {
+        let builder = new PromiseBuilder();
+        builder.addPromise(new DefaultPromise(function () {
+            return "Hello";
+
+        }));
+        return builder.promise().then((result) =>{
+            expect(result).to.be.equals("Hello");
+        }).catch((err) =>{
+            expect(true).to.be.false;
+        });
+
+    })
 });
 
 describe('PromiseBuilder build promise more callbacks', () => {

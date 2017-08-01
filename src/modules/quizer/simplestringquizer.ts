@@ -54,7 +54,7 @@ export class SimpleStringQuizer implements Quizer {
     }
 
     render(): void {
-        throw new Error("Method not implemented.");
+
     }
 
 }

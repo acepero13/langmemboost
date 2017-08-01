@@ -4,6 +4,7 @@ const cardretriever_1 = require("../../../src/modules/card/retrievers/cardretrie
 const chai_1 = require("chai");
 const cardprovider_1 = require("./fakes/cardprovider");
 const sequential_1 = require("../../../src/modules/card/retrievers/iterators/sequential");
+const errorcardprovider_1 = require("./fakes/errorcardprovider");
 function makeSequentialCardRetriever(cardProvider) {
     let sequentialIterator = new sequential_1.SequentialIterator([]);
     let sequential = new cardretriever_1.CardRetriever(cardProvider, sequentialIterator);
@@ -72,10 +73,24 @@ describe('Test sequential retriever getPreviousCard', function () {
         });
     });
 });
+describe('FakeErrorProvider', () => {
+    it('should return error when using fake error provider', () => {
+        let cardProvider = createFakeErrorProvider();
+        let sequential = makeSequentialCardRetriever(cardProvider);
+        return sequential.getNextCard().then((card) => {
+            chai_1.expect(true).to.be.false;
+        }).catch((err) => {
+            chai_1.expect(err).to.be.equals("Error");
+        });
+    });
+});
 function createFakeProvider() {
     let firstCard = { front: "Front First", back: "Back First" };
     let secondCard = { front: "Front Second", back: "Back Second" };
     let cardProvider = new cardprovider_1.FakeCardProvider([firstCard, secondCard]);
     return cardProvider;
+}
+function createFakeErrorProvider() {
+    return new errorcardprovider_1.FakeErrorCardProvider();
 }
 //# sourceMappingURL=sequential.test.js.map

@@ -17,7 +17,7 @@ export class PromiseBuilder<T>{
 
     public addPromise(promised: Promified<T>): PromiseBuilder<T>{
          if(this.firstPromise == null)
-            this.firstPromise = promised
+            this.firstPromise = promised;
         else{
             let childPromise = promised;
             this.firstPromise.addChild(childPromise);

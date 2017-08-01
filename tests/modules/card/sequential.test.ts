@@ -4,8 +4,10 @@ import {expect} from 'chai';
 
 import {FakeCardProvider} from './fakes/cardprovider';
 import {SequentialIterator} from "../../../src/modules/card/retrievers/iterators/sequential";
+import {CardProvider} from "../../../src/modules/card/providers/cardprovider";
+import {FakeErrorCardProvider} from "./fakes/errorcardprovider";
 
-function makeSequentialCardRetriever(cardProvider: FakeCardProvider) {
+function makeSequentialCardRetriever(cardProvider: CardProvider) {
     let sequentialIterator = new SequentialIterator([]);
     let sequential = new CardRetriever(cardProvider, sequentialIterator);
     return sequential;
@@ -80,6 +82,18 @@ describe('Test sequential retriever getPreviousCard', function () {
     });
 });
 
+describe('FakeErrorProvider', () => {
+    it('should return error when using fake error provider', () => {
+        let cardProvider = createFakeErrorProvider();
+        let sequential = makeSequentialCardRetriever(cardProvider);
+        return sequential.getNextCard().then((card) =>{
+            expect(true).to.be.false;
+        }).catch((err)=>{
+            expect(err).to.be.equals("Error");
+        })
+    });
+});
+
 
 
 
@@ -89,4 +103,10 @@ function createFakeProvider(): FakeCardProvider {
     let cardProvider = new FakeCardProvider([firstCard, secondCard]);
     return cardProvider;
 
+}
+
+
+
+function createFakeErrorProvider(): CardProvider{
+    return new FakeErrorCardProvider();
 }
