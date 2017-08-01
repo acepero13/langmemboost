@@ -20,7 +20,7 @@ describe('Test Squential retriever getNextCard', function () {
             })
             .catch((error) => {
                 expect(error).to.be.instanceof(Error)
-                    .and.have.property('message', 'Deck has no more cards')
+                    .and.have.property('message', 'Item has no next')
             });
     });
 
@@ -61,7 +61,7 @@ describe('Test sequential retriever getPreviousCard', function () {
             })
             .catch((error) => {
                 expect(error).to.be.instanceof(Error)
-                    .and.have.property('message', 'Deck has no more cards')
+                    .and.have.property('message', 'Item has no previous')
             });
     });
 

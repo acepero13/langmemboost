@@ -1,31 +1,38 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const cardpromiser_1 = require("./promisers/cardpromiser");
+const promisebuilder_1 = require("../../../utils/promisebuilder");
+const cardpromise_1 = require("./promisers/cardpromise");
 class CardRetriever {
     constructor(cardProvider, cardIterator) {
         this.cardProvider = cardProvider;
         this.cardIterator = cardIterator;
     }
     getNextCard() {
-        let self = this;
-        return new Promise((resolve, reject) => {
-            let cardPromiser = new cardpromiser_1.CardPromiser(self.cardIterator, self.cardProvider, resolve, reject, getNextCardFromIt);
-            cardPromiser.promiseCard();
+        let promiseBuilder = this.promiseCard(() => {
+            return this.cardIterator.next();
         });
+        return promiseBuilder.promise();
     }
     getPreviousCard() {
-        let self = this;
-        return new Promise((resolve, reject) => {
-            let cardPromiser = new cardpromiser_1.CardPromiser(self.cardIterator, self.cardProvider, resolve, reject, getPreviousCardFromIt);
-            cardPromiser.promiseCard();
+        let promiseBuilder = this.promiseCard(() => {
+            return this.cardIterator.previous();
         });
+        return promiseBuilder.promise();
+    }
+    isIteratorNotInitialized() {
+        return this.cardIterator.items == null || this.cardIterator.items.length == 0;
+    }
+    promiseCard(getCard) {
+        let cardPromiser = new cardpromise_1.Cardpromise(this);
+        let promiseBuilder = new promisebuilder_1.PromiseBuilder();
+        promiseBuilder.add(getCard);
+        this.loadIterator(promiseBuilder, cardPromiser);
+        return promiseBuilder;
+    }
+    loadIterator(promiseBuilder, cardPromiser) {
+        if (this.isIteratorNotInitialized())
+            promiseBuilder.addPromise(cardPromiser);
     }
 }
 exports.CardRetriever = CardRetriever;
-function getNextCardFromIt(it) {
-    return it.next();
-}
-function getPreviousCardFromIt(it) {
-    return it.previous();
-}
 //# sourceMappingURL=cardretriever.js.map

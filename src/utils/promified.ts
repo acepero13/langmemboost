@@ -1,28 +1,16 @@
 export abstract class Promified<T>{
     child: Promified<T>;
-    private currentPromise: Promise<T>;
+    protected currentPromise: Promise<T>;
     private callback: (...params: any[]) => T;
 
     public constructor(callback: (...params: any[]) => T) {
         this.callback = callback;
-
     }
-
-    protected createPromise() {
-        if (this.currentPromise == null) {
-            this.currentPromise = new Promise((resolve, reject) => {
-                this.resolver(resolve, reject, this.callback);
-            });
-        }
-    }
-
 
     public promise(): Promise<T> {
         this.createPromise();
         if (this.child != null) {
-            return this.currentPromise = new Promise((resolve, reject) => {
-                this.childResolver(resolve, reject, this.callback);
-            });
+            return this.createChildPromise();
         }
         return this.currentPromise;
     }
@@ -30,6 +18,15 @@ export abstract class Promified<T>{
     public addChild(child: Promified<T>): void {
         this.child = child;
     }
+
+   
+
+    protected createPromise():void {
+        if (this.currentPromise == null) {
+            this.createCurrentPromise();
+        }
+    }
+
     protected abstract resolver(resolve, reject, callback: (...params: any[]) => T): void;
 
     protected childResolver(resolve, reject, callback: (...params: any[]) => T) {
@@ -38,6 +35,18 @@ export abstract class Promified<T>{
             resolve(childResult);
         }).catch((err) => {
             reject(err);
+        });
+    }
+
+    private createCurrentPromise() {
+        this.currentPromise = new Promise((resolve, reject) => {
+            this.resolver(resolve, reject, this.callback);
+        });
+    }
+
+    private createChildPromise() {
+        return this.currentPromise = new Promise((resolve, reject) => {
+            this.childResolver(resolve, reject, this.callback);
         });
     }
 

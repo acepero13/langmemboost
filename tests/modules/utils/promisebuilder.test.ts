@@ -9,6 +9,7 @@ describe('PromiseBuilder build Promise from one callback', () => {
         expect(builder).to.be.instanceOf(PromiseBuilder);
 
     });
+    
 
     it('should create new promise from callback', () => {
         let builder = new PromiseBuilder();
@@ -43,3 +44,4 @@ describe('PromiseBuilder build promise more callbacks', () => {
         });
     });
 });
+

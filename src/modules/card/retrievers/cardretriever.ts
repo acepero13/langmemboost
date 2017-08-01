@@ -3,37 +3,48 @@ import {Retriever} from "./retriever";
 import {Card} from "../card";
 import {CardProvider} from "../providers/cardprovider";
 import {CardPromiser} from "./promisers/cardpromiser";
+import {PromiseBuilder} from "../../../utils/promisebuilder";
+import {Cardpromise} from "./promisers/cardpromise";
 
 export class CardRetriever implements Retriever {
-    private cardProvider: CardProvider;
+    public cardProvider: CardProvider;
     public cardIterator: Iterator<Card>;
+
 
     public constructor(cardProvider: CardProvider, cardIterator: Iterator<Card>) {
         this.cardProvider = cardProvider;
         this.cardIterator = cardIterator;
     }
 
-
     public getNextCard(): Promise<Card> {
-        let self = this;
-        return new Promise<Card>((resolve, reject) => {
-            let cardPromiser = new CardPromiser(self.cardIterator, self.cardProvider, resolve, reject, getNextCardFromIt);
-            cardPromiser.promiseCard();
+        let promiseBuilder = this.promiseCard(() =>{
+            return this.cardIterator.next();
         });
+        return promiseBuilder.promise();
+        
     }
 
     public getPreviousCard(): Promise<Card> {
-        let self = this;
-        return new Promise<Card>((resolve, reject) => {
-            let cardPromiser = new CardPromiser(self.cardIterator, self.cardProvider, resolve, reject, getPreviousCardFromIt);
-            cardPromiser.promiseCard();
+        let promiseBuilder = this.promiseCard(() =>{
+            return this.cardIterator.previous();
         });
+        return promiseBuilder.promise();
     }
-}
 
-function getNextCardFromIt(it: Iterator<Card>) {
-    return it.next();
-}
-function getPreviousCardFromIt(it: Iterator<Card>) {
-    return it.previous();
+     private isIteratorNotInitialized(): boolean {
+        return this.cardIterator.items == null || this.cardIterator.items.length == 0;
+    }
+
+    private promiseCard(getCard: ()=> Card) {
+        let cardPromiser = new Cardpromise<Card>(this);
+        let promiseBuilder = new PromiseBuilder<Card>();
+        promiseBuilder.add(getCard);
+        this.loadIterator(promiseBuilder, cardPromiser);
+        return promiseBuilder;
+    }
+
+    private loadIterator(promiseBuilder: PromiseBuilder<Card>, cardPromiser: Cardpromise<Card>) {
+        if (this.isIteratorNotInitialized())
+            promiseBuilder.addPromise(cardPromiser);
+    }
 }

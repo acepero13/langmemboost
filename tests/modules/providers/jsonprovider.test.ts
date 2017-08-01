@@ -16,6 +16,13 @@ describe('On Existing file', function(){
             expect(cards.length).to.be.equals(1);
         });
     });
+
+    it('should return limited total of cards from file when limit is smaller than total', function(){
+        let provider = new JsonProvider("tests/res/cards.json");
+        return provider.getAtLeast(3).then(cards => {
+            expect(cards.length).to.be.equals(2);
+        });
+    });
     
 });
 
