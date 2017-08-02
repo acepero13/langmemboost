@@ -10,8 +10,6 @@ describe('PromiseBuilder build Promise from one callback', () => {
         expect(builder).to.be.instanceOf(PromiseBuilder);
 
     });
-    
-
     it('should create new promise from callback', () => {
         let builder = new PromiseBuilder();
         builder.add(function(){
@@ -20,7 +18,7 @@ describe('PromiseBuilder build Promise from one callback', () => {
 
         return builder.promise().then((result) =>{
             expect(result).to.be.equals("Hello");
-        }).catch((err) =>{
+        }).catch((err) => {
             expect(true).to.be.false;
         });
     });

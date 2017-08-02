@@ -20,7 +20,7 @@ class CardRetriever {
         return promiseBuilder.promise();
     }
     isIteratorNotInitialized() {
-        return this.cardIterator.items == null || this.cardIterator.items.length == 0;
+        return this.cardIterator.items == null || this.cardIterator.items.length === 0;
     }
     promiseCard(getCard) {
         let promiseBuilder = new promisebuilder_1.PromiseBuilder();

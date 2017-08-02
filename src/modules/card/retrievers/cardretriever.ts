@@ -3,7 +3,7 @@ import {Retriever} from "./retriever";
 import {Card} from "../card";
 import {CardProvider} from "../providers/cardprovider";
 import {CardPromiser} from "./promisers/cardpromiser";
-import {PromiseBuilder} from "../../../utils/promisebuilder";
+import {PromiseBuilder} from '../../../utils/promisebuilder';
 import {Cardpromise} from "./promisers/cardpromise";
 
 export class CardRetriever implements Retriever {
@@ -21,7 +21,7 @@ export class CardRetriever implements Retriever {
             return this.cardIterator.next();
         });
         return promiseBuilder.promise();
-        
+
     }
 
     public getPreviousCard(): Promise<Card> {
@@ -32,10 +32,10 @@ export class CardRetriever implements Retriever {
     }
 
      private isIteratorNotInitialized(): boolean {
-        return this.cardIterator.items == null || this.cardIterator.items.length == 0;
+        return this.cardIterator.items == null || this.cardIterator.items.length === 0;
     }
 
-    private promiseCard(getCard: ()=> Card) {
+    private promiseCard(getCard: () => Card) {
         let promiseBuilder = new PromiseBuilder<Card>();
         promiseBuilder.add(getCard);
         this.loadIterator(promiseBuilder);

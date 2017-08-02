@@ -4,6 +4,9 @@
   "description": "Repetition learning app",
   "main": "index.js",
   "scripts": {
+    "build": "tsc -p .",
+    "build:watch": "tsc -p -w",
+    "build:e2e": "tsc -p e2e/",
     "test": "mocha tests/**/*.js"
   },
   "keywords": [
