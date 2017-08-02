@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/globals/mocha/index.d.ts" />
 import { expect } from 'chai';
 import { QuizValidator } from "../../../src/modules/quizer/quizvalidator";
 

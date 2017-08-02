@@ -1,6 +1,5 @@
 import { LevensteinDistance } from '../../../src/utils/levenstein';
 
-/// <reference path="../../../typings/globals/mocha/index.d.ts" />
 import { expect } from 'chai';
 
 

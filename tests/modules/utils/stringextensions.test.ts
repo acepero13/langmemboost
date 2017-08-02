@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/globals/mocha/index.d.ts" />
 /// <reference path="../../../src/utils/stringextensions.ts" />
 import { expect } from 'chai';
 import "../../../src/utils/stringextensions"

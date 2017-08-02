@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/globals/mocha/index.d.ts" />
 import { expect } from 'chai';
 import { QuizLevel } from "../../../src/modules/quizer/quizlevel";
 describe('Text QuizLevel On regular length text', function(){

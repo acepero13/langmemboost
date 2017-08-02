@@ -1,5 +1,4 @@
 import {RandomIterator} from '../../../src/modules/card/retrievers/iterators/random';
-/// <reference path="../../../typings/globals/mocha/index.d.ts" />
 import { expect } from 'chai';
 import { RandomWithNavigation } from "../../../src/modules/card/retrievers/iterators/randomwithnavigation";
 describe('Test Random Iterator with empty array', function () {
@@ -45,7 +44,6 @@ describe('Test Random Iterator with filled array and no navigation used', functi
         let res = it.hasPrevious();
         expect(res).to.be.false;
     });
-
     
 });
 

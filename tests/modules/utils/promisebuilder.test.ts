@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/globals/mocha/index.d.ts" />
 import { expect } from 'chai';
 import { PromiseBuilder } from "../../../src/utils/promisebuilder";
 import {DefaultPromise} from "../../../src/utils/defaultpromise";

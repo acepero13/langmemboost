@@ -14,7 +14,7 @@
         "noLib": false,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
-        "lib": ["dom", "es2015.promise", "es5"],
+        "lib": ["dom", "es2015.promise", "es6"],
         "noImplicitReturns": true,
         "watch": false
     },

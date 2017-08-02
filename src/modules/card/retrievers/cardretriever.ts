@@ -10,14 +10,13 @@ export class CardRetriever implements Retriever {
     public cardProvider: CardProvider;
     public cardIterator: Iterator<Card>;
 
-
     public constructor(cardProvider: CardProvider, cardIterator: Iterator<Card>) {
         this.cardProvider = cardProvider;
         this.cardIterator = cardIterator;
     }
 
     public getNextCard(): Promise<Card> {
-        let promiseBuilder = this.promiseCard(() =>{
+        let promiseBuilder = this.promiseCard(() => {
             return this.cardIterator.next();
         });
         return promiseBuilder.promise();
@@ -25,7 +24,7 @@ export class CardRetriever implements Retriever {
     }
 
     public getPreviousCard(): Promise<Card> {
-        let promiseBuilder = this.promiseCard(() =>{
+        let promiseBuilder = this.promiseCard(() => {
             return this.cardIterator.previous();
         });
         return promiseBuilder.promise();

@@ -1,5 +1,4 @@
 import { CardRetriever } from '../../../src/modules/card/retrievers/cardretriever';
-/// <reference path="../../../typings/globals/mocha/index.d.ts" />
 import {expect} from 'chai';
 
 import {FakeCardProvider} from './fakes/cardprovider';
