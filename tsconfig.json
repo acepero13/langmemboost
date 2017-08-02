@@ -16,7 +16,7 @@
         "suppressImplicitAnyIndexErrors": true,
         "lib": ["dom", "es2015.promise", "es5"],
         "noImplicitReturns": true,
-        "watch": true
+        "watch": false
     },
 
     "exclude": [

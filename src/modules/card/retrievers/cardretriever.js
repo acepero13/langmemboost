@@ -23,15 +23,16 @@ class CardRetriever {
         return this.cardIterator.items == null || this.cardIterator.items.length == 0;
     }
     promiseCard(getCard) {
-        let cardPromiser = new cardpromise_1.Cardpromise(this);
         let promiseBuilder = new promisebuilder_1.PromiseBuilder();
         promiseBuilder.add(getCard);
-        this.loadIterator(promiseBuilder, cardPromiser);
+        this.loadIterator(promiseBuilder);
         return promiseBuilder;
     }
-    loadIterator(promiseBuilder, cardPromiser) {
-        if (this.isIteratorNotInitialized())
+    loadIterator(promiseBuilder) {
+        if (this.isIteratorNotInitialized()) {
+            let cardPromiser = new cardpromise_1.Cardpromise(this);
             promiseBuilder.addPromise(cardPromiser);
+        }
     }
 }
 exports.CardRetriever = CardRetriever;

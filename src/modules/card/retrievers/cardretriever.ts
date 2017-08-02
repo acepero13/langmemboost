@@ -36,15 +36,16 @@ export class CardRetriever implements Retriever {
     }
 
     private promiseCard(getCard: ()=> Card) {
-        let cardPromiser = new Cardpromise<Card>(this);
         let promiseBuilder = new PromiseBuilder<Card>();
         promiseBuilder.add(getCard);
-        this.loadIterator(promiseBuilder, cardPromiser);
+        this.loadIterator(promiseBuilder);
         return promiseBuilder;
     }
 
-    private loadIterator(promiseBuilder: PromiseBuilder<Card>, cardPromiser: Cardpromise<Card>) {
-        if (this.isIteratorNotInitialized())
+    private loadIterator(promiseBuilder: PromiseBuilder<Card>) {
+        if (this.isIteratorNotInitialized()){
+            let cardPromiser = new Cardpromise<Card>(this);
             promiseBuilder.addPromise(cardPromiser);
+        }
     }
 }
